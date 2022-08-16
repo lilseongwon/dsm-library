@@ -2,6 +2,7 @@ package com.example.entryassignment.domain.book.service;
 
 import com.example.entryassignment.domain.book.presentation.dto.response.QueryNaverBookInfoResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,14 +17,18 @@ import java.net.URI;
 public class QueryNaverBookInfoService {
 
     private final RestTemplate restTemplate;
-    private final String CLIENT_ID = System.getenv("CLIENT_ID");
-    private final String CLIENT_SECRET = System.getenv("CLIENT_SECRET");
+
+    @Value("${naver.url2}")
+    private final String NAVER_URL;
+    @Value("${naver.id}")
+    private final String CLIENT_ID;
+    @Value("${naver.secret}")
+    private final String CLIENT_SECRET;
 
     public QueryNaverBookInfoResponse execute(String keyword) {
         final HttpHeaders headers = new HttpHeaders();
         URI uri = UriComponentsBuilder
-                .fromUriString("https://openapi.naver.com")
-                .path("/v1/search/book.json")
+                .fromUriString(NAVER_URL)
                 .queryParam("query", keyword)
                 .encode()
                 .build()

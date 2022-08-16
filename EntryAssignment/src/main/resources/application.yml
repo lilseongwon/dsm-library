@@ -2,6 +2,7 @@ naver:
   id: ${CLIENT_ID}
   secret: ${CLIENT_SECRET}
   url: ${NAVER_URL}
+  url2: ${NAVER_URL2}
 
 server:
   port: ${PORT}
