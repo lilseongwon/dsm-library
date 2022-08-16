@@ -3,6 +3,7 @@ package com.example.entryassignment.domain.apply.service;
 import com.example.entryassignment.domain.apply.exception.BookIsNotExistInNaverException;
 import com.example.entryassignment.domain.book.presentation.dto.response.QueryNaverBookInfoResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,10 +18,13 @@ import java.util.Objects;
 @Service
 public class CheckBookExistInNaverService {
     private final RestTemplate restTemplate;
-    private final String DETAIL_URL = "https://openapi.naver.com/v1/search/book_adv.json";
 
-    private final String CLIENT_ID = System.getenv("CLIENT_ID");
-    private final String CLIENT_SECRET = System.getenv("CLIENT_SECRET");
+    @Value("${naver.url}")
+    private final String DETAIL_URL;
+    @Value("${naver.id}")
+    private final String CLIENT_ID;
+    @Value("${naver.secret}")
+    private final String CLIENT_SECRET;
 
     public void execute(String title, String isbn) {
         final HttpHeaders headers = new HttpHeaders();
