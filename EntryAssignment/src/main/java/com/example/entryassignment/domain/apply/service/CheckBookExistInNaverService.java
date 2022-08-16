@@ -17,6 +17,7 @@ import java.util.Objects;
 @Service
 public class CheckBookExistInNaverService {
     private final RestTemplate restTemplate;
+    private final String DETAIL_URL = "https://openapi.naver.com/v1/search/book_adv.json";
 
     private final String CLIENT_ID = System.getenv("CLIENT_ID");
     private final String CLIENT_SECRET = System.getenv("CLIENT_SECRET");
@@ -24,9 +25,8 @@ public class CheckBookExistInNaverService {
     public void execute(String title, String isbn) {
         final HttpHeaders headers = new HttpHeaders();
         URI uri = UriComponentsBuilder
-                .fromUriString("https://openapi.naver.com")
-                .path("/v1/search/book.json")
-                .queryParam("query", title)
+                .fromUriString(DETAIL_URL)
+                .queryParam("d_title", title)
                 .queryParam("d_isbn", isbn)
                 .encode()
                 .build()
