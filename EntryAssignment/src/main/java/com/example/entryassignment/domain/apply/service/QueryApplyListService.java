@@ -31,6 +31,7 @@ public class QueryApplyListService {
         return QueryApplyInfoResponse.builder()
                 .title(apply.getTitle())
                 .isbn(apply.getIsbn())
+                .user(apply.getUser())
                 .build();
     }
 }

@@ -23,9 +23,14 @@ public class Apply {
     @Column(length = 20, nullable = false)
     private String isbn;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
+
     @Builder
-    public Apply(String title, String isbn) {
+    public Apply(String title, String isbn, User user) {
         this.title = title;
         this.isbn = isbn;
+        this.user = user;
     }
 }
