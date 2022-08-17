@@ -20,13 +20,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-
-        if(!(request.getMethod().equals("GET"))) {
-            String parseToken = jwtTokenProvider.resolveToken(request);
-            if (parseToken != null) {
-                Authentication authentication = jwtTokenProvider.authentication(parseToken);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
+        String parseToken = jwtTokenProvider.resolveToken(request);
+        if (parseToken != null) {
+            Authentication authentication = jwtTokenProvider.authentication(parseToken);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);
     }
