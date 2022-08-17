@@ -30,18 +30,19 @@ public class SecurityConfig {
 
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //세션을 사용하지 않음. = jwt사용
 
                 .and()
                 .authorizeRequests()
 
                 //user
-                .antMatchers("/user/signup").permitAll()
+                .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
                 .antMatchers("/user/token").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/user/logout").permitAll()
 
                 //book
-                .antMatchers("/book/info/{keyword}").permitAll()
-                .antMatchers("/book/naverbook/{keyword}").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/info/{keyword}").permitAll()
+                .antMatchers(HttpMethod.GET, "/book/naverbook/{keyword}").permitAll()
 
                 //apply
                 .antMatchers(HttpMethod.GET, "/apply").permitAll()

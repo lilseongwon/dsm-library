@@ -1,12 +1,9 @@
 package com.example.entryassignment.domain.user.presentation;
 
 import com.example.entryassignment.domain.user.presentation.dto.request.UpdatePasswordRequest;
-import com.example.entryassignment.domain.user.service.MemberWithdrawlService;
-import com.example.entryassignment.domain.user.service.QueryMyInformationService;
+import com.example.entryassignment.domain.user.service.*;
 import com.example.entryassignment.domain.user.presentation.dto.request.UserSignupRequest;
 import com.example.entryassignment.domain.user.presentation.dto.response.QueryMyInformationResponse;
-import com.example.entryassignment.domain.user.service.UpdatePasswordService;
-import com.example.entryassignment.domain.user.service.UserSignupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +18,7 @@ public class UserController {
     private final QueryMyInformationService queryMyInformationService;
     private final MemberWithdrawlService memberWithdrawlService;
     private final UpdatePasswordService updatePasswordService;
+    private final LogoutService logoutService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
@@ -37,6 +35,12 @@ public class UserController {
     @DeleteMapping("/delete")
     public void memberWithdrawl() {
         memberWithdrawlService.execute();
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/logout")
+    public void logout() {
+        logoutService.execute();
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
