@@ -1,6 +1,7 @@
 package com.example.entryassignment.global.security.jwt;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,10 +21,12 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        String parseToken = jwtTokenProvider.resolveToken(request);
-        if (parseToken != null) {
-            Authentication authentication = jwtTokenProvider.authentication(parseToken);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if(!(request.getMethod().equals("GET"))) {
+            String parseToken = jwtTokenProvider.resolveToken(request);
+            if (parseToken != null) {
+                Authentication authentication = jwtTokenProvider.authentication(parseToken);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
         filterChain.doFilter(request, response);
     }
