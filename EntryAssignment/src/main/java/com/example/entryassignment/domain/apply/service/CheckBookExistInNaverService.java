@@ -20,11 +20,11 @@ public class CheckBookExistInNaverService {
     private final RestTemplate restTemplate;
 
     @Value("${naver.url}")
-    private final String DETAIL_URL;
+    private String DETAIL_URL;
     @Value("${naver.id}")
-    private final String CLIENT_ID;
+    private String CLIENT_ID;
     @Value("${naver.secret}")
-    private final String CLIENT_SECRET;
+    private String CLIENT_SECRET;
 
     public void execute(String title, String isbn) {
         final HttpHeaders headers = new HttpHeaders();

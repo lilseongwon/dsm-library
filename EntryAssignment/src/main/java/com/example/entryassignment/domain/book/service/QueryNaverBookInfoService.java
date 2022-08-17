@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -19,11 +20,11 @@ public class QueryNaverBookInfoService {
     private final RestTemplate restTemplate;
 
     @Value("${naver.url2}")
-    private final String NAVER_URL;
+    private String NAVER_URL;
     @Value("${naver.id}")
-    private final String CLIENT_ID;
+    private String CLIENT_ID;
     @Value("${naver.secret}")
-    private final String CLIENT_SECRET;
+    private String CLIENT_SECRET;
 
     public QueryNaverBookInfoResponse execute(String keyword) {
         final HttpHeaders headers = new HttpHeaders();
