@@ -21,7 +21,7 @@ public class AuthController {
         return userSignInService.execute(signInRequest);
     }
 
-    @PatchMapping("token")
+    @PatchMapping("/token")
     public TokenResponse tokenRefresh(@RequestHeader("Refresh-Token") String refreshToken) {
         return tokenRefreshService.execute(refreshToken);
     }
