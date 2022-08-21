@@ -4,6 +4,7 @@ import com.example.entryassignment.domain.apply.domain.Apply;
 import com.example.entryassignment.domain.apply.domain.repository.ApplyRepository;
 import com.example.entryassignment.domain.apply.presentation.dto.response.QueryApplyInfoListResponse;
 import com.example.entryassignment.domain.apply.presentation.dto.response.QueryApplyInfoResponse;
+import com.example.entryassignment.domain.book.facade.AdminFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +17,11 @@ import java.util.stream.Collectors;
 public class QueryApplyListService {
 
     private final ApplyRepository applyRepository;
+    private final AdminFacade adminFacade;
 
     @Transactional(readOnly = true)
     public QueryApplyInfoListResponse execute() {
+        adminFacade.checkPermission();
         List<QueryApplyInfoResponse> applyList = applyRepository.findAllByOrderById()
                 .stream()
                 .map(this::applyBuilder)
