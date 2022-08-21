@@ -1,3 +1,6 @@
+admin:
+  id: ${ADMIN}
+
 naver:
   id: ${CLIENT_ID}
   secret: ${CLIENT_SECRET}
