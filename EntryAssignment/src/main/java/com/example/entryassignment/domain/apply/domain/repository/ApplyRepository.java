@@ -1,6 +1,7 @@
 package com.example.entryassignment.domain.apply.domain.repository;
 
 import com.example.entryassignment.domain.apply.domain.Apply;
+import com.example.entryassignment.domain.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface ApplyRepository extends JpaRepository<Apply, Long> {
     Apply findApplyByIsbn(String isbn);
 
     List<Apply> findAllByOrderById();
+
+    List<Apply> findAllByUserOrderById(User user);
 }
