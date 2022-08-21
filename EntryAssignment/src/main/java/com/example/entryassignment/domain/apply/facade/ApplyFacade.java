@@ -4,6 +4,7 @@ import com.example.entryassignment.domain.apply.domain.Apply;
 import com.example.entryassignment.domain.apply.domain.repository.ApplyRepository;
 import com.example.entryassignment.domain.apply.exception.AlreadyAppliedException;
 import com.example.entryassignment.domain.apply.exception.LimitExcessException;
+import com.example.entryassignment.domain.book.exception.NoPermissionException;
 import com.example.entryassignment.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,12 @@ public class ApplyFacade {
     public void checkApplyCount() {
         if(userFacade.getCurrentUser().getApplyCount() == 2) {
             throw LimitExcessException.EXCEPTION;
+        }
+    }
+
+    public void checkAppliedUser(String isbn) {
+        if(!applyRepository.findApplyByIsbn(isbn).getUser().equals(userFacade.getCurrentUser())) {
+            throw NoPermissionException.EXCEPTION;
         }
     }
 }
