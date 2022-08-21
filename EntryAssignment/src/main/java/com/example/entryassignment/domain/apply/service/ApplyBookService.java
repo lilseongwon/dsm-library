@@ -21,7 +21,6 @@ public class ApplyBookService {
     private final ApplyRepository applyRepository;
 
     public void execute(ApplyBookRequest request) {
-        User user = userFacade.getCurrentUser();
 
         checkBookExistInNaverService.execute(request.getTitle(), request.getIsbn());
 
@@ -29,12 +28,16 @@ public class ApplyBookService {
 
         applyFacade.checkApplyExist(request.getIsbn());
 
+        applyFacade.checkApplyCount();
+
+        User user = userFacade.getCurrentUser();
+
         applyRepository.save(
                 Apply.builder()
                         .title(request.getTitle())
                         .isbn(request.getIsbn())
                         .user(user)
                         .build());
-
+        user.addCount();
     }
 }

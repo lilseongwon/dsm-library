@@ -14,6 +14,8 @@ public enum ErrorCode {
 
     NO_PERMISSION(401, "No Permission"),
 
+    LIMIT_EXCESS(401, "Limit Excess"),
+
     INVALID_REFRESH_TOKEN(401, "Invalid Refresh Token"),
 
     USER_NOT_FOUND(404, "User Not Found"),

@@ -41,7 +41,7 @@ public class AdminAddBookService {
 
         if (applyRepository.findByIsbn(request.getIsbn()).isPresent()) {
             applyRepository.delete(applyFacade.getApplyBy(request.getIsbn()));
+            applyFacade.getApplyBy(request.getIsbn()).getUser().subCount();
         }
-
     }
 }

@@ -1,5 +1,6 @@
 package com.example.entryassignment.domain.user.domain;
 
+import com.example.entryassignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,14 +26,26 @@ public class User {
     @Column(length = 4, nullable = false)
     private String name;
 
+    @Column(length = 1, nullable = false)
+    private Integer applyCount;
+
     @Builder
     public User(String accountId, String password, String name) {
         this.accountId = accountId;
         this.password = password;
         this.name = name;
+        this.applyCount = 0;
     }
 
     public void changePassword(String password) {
         this.password = password;
+    }
+
+    public void addCount() {
+        this.applyCount = this.applyCount + 1;
+    }
+
+    public void subCount() {
+        this.applyCount = this.applyCount - 1;
     }
 }
