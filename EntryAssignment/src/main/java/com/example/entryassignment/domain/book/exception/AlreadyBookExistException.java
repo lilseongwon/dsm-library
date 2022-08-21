@@ -3,12 +3,12 @@ package com.example.entryassignment.domain.book.exception;
 import com.example.entryassignment.global.error.CustomException;
 import com.example.entryassignment.global.error.ErrorCode;
 
-public class AlreadyBookExistExcpetion extends CustomException {
+public class AlreadyBookExistException extends CustomException {
 
-    public static final AlreadyBookExistExcpetion EXCPETION =
-            new AlreadyBookExistExcpetion();
+    public static final CustomException EXCEPTION =
+            new AlreadyBookExistException();
 
-    private AlreadyBookExistExcpetion() {
+    private AlreadyBookExistException() {
         super(ErrorCode.ALREADY_BOOK_EXIST);
     }
 }

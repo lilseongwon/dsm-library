@@ -5,7 +5,7 @@ import com.example.entryassignment.global.error.ErrorCode;
 
 public class NoPermissionException extends CustomException {
 
-    public static final NoPermissionException EXCEPTION =
+    public static final CustomException EXCEPTION =
             new NoPermissionException();
 
     private NoPermissionException() {

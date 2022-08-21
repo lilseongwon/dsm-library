@@ -5,7 +5,7 @@ import com.example.entryassignment.global.error.ErrorCode;
 
 public class AlreadyAppliedException extends CustomException {
 
-    public static final AlreadyAppliedException EXCEPTION =
+    public static final CustomException EXCEPTION =
             new AlreadyAppliedException();
 
     private AlreadyAppliedException() {

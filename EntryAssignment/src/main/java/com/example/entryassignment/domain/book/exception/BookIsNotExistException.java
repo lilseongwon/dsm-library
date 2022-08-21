@@ -5,7 +5,7 @@ import com.example.entryassignment.global.error.ErrorCode;
 
 public class BookIsNotExistException extends CustomException {
 
-    public static final BookIsNotExistException EXCEPTION =
+    public static final CustomException EXCEPTION =
             new BookIsNotExistException();
 
     private BookIsNotExistException() {

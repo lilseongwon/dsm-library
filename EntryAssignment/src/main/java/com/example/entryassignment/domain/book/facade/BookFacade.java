@@ -2,7 +2,7 @@ package com.example.entryassignment.domain.book.facade;
 
 import com.example.entryassignment.domain.book.domain.Book;
 import com.example.entryassignment.domain.book.domain.repository.BookRepository;
-import com.example.entryassignment.domain.book.exception.AlreadyBookExistExcpetion;
+import com.example.entryassignment.domain.book.exception.AlreadyBookExistException;
 import com.example.entryassignment.domain.book.exception.BookIsNotExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class BookFacade {
 
     public void checkBookExist(String isbn) {
         if (bookRepository.findByIsbn(isbn).isPresent())
-            throw AlreadyBookExistExcpetion.EXCPETION;
+            throw AlreadyBookExistException.EXCEPTION;
     }
 
     public Book getBookByIsbn(String isbn) {
