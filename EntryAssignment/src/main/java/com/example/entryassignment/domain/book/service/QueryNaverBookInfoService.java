@@ -31,6 +31,7 @@ public class QueryNaverBookInfoService {
         URI uri = UriComponentsBuilder
                 .fromUriString(NAVER_URL)
                 .queryParam("query", keyword)
+                .encode()
                 .build()
                 .toUri();
         headers.set("X-Naver-Client-Id", CLIENT_ID);
