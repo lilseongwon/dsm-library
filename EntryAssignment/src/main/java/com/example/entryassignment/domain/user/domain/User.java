@@ -1,12 +1,14 @@
 package com.example.entryassignment.domain.user.domain;
 
-import com.example.entryassignment.global.entity.BaseTimeEntity;
+import com.example.entryassignment.domain.apply.domain.Apply;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,6 +30,9 @@ public class User {
 
     @Column(length = 1, nullable = false)
     private Integer applyCount;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Apply> applyList = new ArrayList<>();
 
     @Builder
     public User(String accountId, String password, String name) {
