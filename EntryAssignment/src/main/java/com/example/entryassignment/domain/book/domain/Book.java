@@ -30,7 +30,9 @@ public class Book {
     @Column(length = 20, nullable = false)
     private String publisher;
 
-    @Column(length = 10, nullable = false)
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Genre genre;
 
     @Builder
